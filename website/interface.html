@@ -1,0 +1,101 @@
+<!-- interface.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vartalapp - Translation Interface</title>
+    <link rel="stylesheet" href="interfacestyles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Vartalapp</a>
+        <div class="nav-links">
+            <a href="index.html">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="interface-container">
+        <div class="camera-controls">
+            <button id="startCamera" class="control-button">
+                <i class="fas fa-video"></i>
+                Start Camera
+            </button>
+            <button id="stopCamera" class="control-button" disabled>
+                <i class="fas fa-video-slash"></i>
+                Stop Camera
+            </button>
+        </div>
+
+        <div class="video-container">
+            <video id="videoFeed" autoplay playsinline></video>
+            <div id="videoOverlay" class="video-overlay">
+                <span>Camera feed will appear here</span>
+            </div>
+        </div>
+
+        <div class="translation-container">
+            <div class="translation-header">
+                <div class="language-select-container">
+                    <label for="language">Translate to:</label>
+                    <select id="language" class="language-select">
+                        <option value="english">English</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="Assamese">Assamese</option>
+                        <option value="Bengali">Bengali</option>
+                        <option value="Gujrati">Gujrati</option>
+                        <option value="Kashmiri">Kashmiri</option>
+                        <option value="Malayalam">Malayalam</option>
+                        <option value="Manipuri">Manipuri</option>
+                        <option value="Marathi">Marathi</option>
+                        <option value="Tamil">Tamil</option>
+                        <option value="Telugu">Telugu</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="translation-box">
+                <h3>Translation Output</h3>
+                <div id="translationText" class="translation-text">
+                    Translation will appear here...
+                </div>
+            </div>
+
+            <button id="speakButton" class="speak-button">
+                <i class="fas fa-volume-up"></i>
+                Speak Translation
+            </button>
+        </div>
+    </main>
+
+    <script>
+        const videoElement = document.getElementById('videoFeed');
+        const startButton = document.getElementById('startCamera');
+        const stopButton = document.getElementById('stopCamera');
+        const videoOverlay = document.getElementById('videoOverlay');
+
+        startButton.addEventListener('click', async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                videoElement.srcObject = stream;
+                startButton.disabled = true;
+                stopButton.disabled = false;
+                videoOverlay.style.display = 'none'; // Hide overlay when camera starts
+            } catch (err) {
+                alert('Error accessing camera: ' + err.message);
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            const stream = videoElement.srcObject;
+            const tracks = stream.getTracks();
+            tracks.forEach(track => track.stop());
+            videoElement.srcObject = null;
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            videoOverlay.style.display = 'flex'; // Show overlay when camera stops
+        });
+    </script>
+</body>
+</html>

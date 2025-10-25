@@ -1,0 +1,280 @@
+/* interface-styles.css */
+:root {
+    --primary-blue: #096c6c;
+    --primary-beige: #FDFBD4;
+    --dark-text: #2F4F4F;
+    --light-text: #FFFFFF;
+    --accent-blue: #00BFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Additional variables for interface */
+    --container-width: 80%;
+    --aspect-ratio: 75%; /* 16:9 aspect ratio:56.25% */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--primary-beige);
+    color: var(--dark-text);
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: var(--primary-blue);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.logo {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+}
+
+.interface-container {
+    width: var(--container-width);
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.control-button {
+    background-color: var(--primary-blue);
+    color: var(--light-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.control-button:hover {
+    background-color: var(--accent-blue);
+}
+
+.control-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.video-container {
+    width: 100%;
+    position: relative;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.video-container::before {
+    content: "";
+    display: block;
+    padding-top: var(--aspect-ratio);
+}
+
+#videoFeed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--light-text);
+    font-size: 1.2rem;
+}
+
+.translation-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.translation-box {
+    background-color: var(--light-text);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.translation-box h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.translation-text {
+    min-height: 100px;
+    padding: 1rem;
+    background-color: var(--primary-beige);
+    border-radius: 5px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.speak-button {
+    background-color: var(--primary-blue);
+    color: var(--light-text);
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.speak-button:hover {
+    background-color: var(--accent-blue);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    :root {
+        --container-width: 95%;
+    }
+
+    .interface-container {
+        padding: 0.5rem;
+    }
+
+    .camera-controls {
+        flex-direction: column;
+    }
+
+    .control-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* interface-styles.css */
+:root {
+    --primary-blue: #096c6c;
+    --primary-beige: #FDFBD4;
+    --dark-text: #2F4F4F;
+    --light-text: #FFFFFF;
+    --accent-blue: #00BFFF;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Additional variables for interface */
+    --container-width: 80%;
+    --aspect-ratio: 56.25%; /* 16:9 aspect ratio */
+}
+
+/* Previous styles remain the same until translation-container */
+
+.translation-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.translation-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.language-select-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.language-select-container label {
+    color: var(--primary-blue);
+    font-weight: 500;
+}
+
+.language-select {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--primary-blue);
+    border-radius: 5px;
+    background-color: var(--light-text);
+    color: var(--dark-text);
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.language-select:hover {
+    border-color: var(--accent-blue);
+}
+
+.language-select:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+}
+
+/* Rest of the previous styles remain the same */
+
+/* Update video-overlay for smoother transitions */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: var(--light-text);
+    font-size: 1.2rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Responsive Design updates */
+@media (max-width: 768px) {
+    .language-select-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .language-select {
+        width: 100%;
+    }
+}
